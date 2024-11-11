@@ -45,7 +45,7 @@ public class CalculadoraMetodo {
                             System.out.println("No  se puede dividir por cero");
 
                         }else {
-                            System.out.println("El resultado de la división es: " + resultado); // no funciona
+                            System.out.println("El resultado de la división es: " + resultado); 
                         }
                     }
                     case 4  -> {
@@ -58,7 +58,7 @@ public class CalculadoraMetodo {
                     }
                 }   //switch            
             } while (salir == false);
-
+            sc.close();
         }catch (InputMismatchException e) { 
             System.out.println("No ingresaste un número: "+ e.getMessage()); 
         }catch (ArithmeticException e){
