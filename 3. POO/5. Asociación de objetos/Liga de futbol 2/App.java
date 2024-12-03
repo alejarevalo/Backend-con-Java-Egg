@@ -43,7 +43,7 @@ public class App {
                 5. Mostrar lista de equipos
                 6. Eliminar jugador
                 7. Eliminar Equipo
-                8. Seleccionar jugador***
+                8. Seleccionar jugador
                 9. Seleccionar equipo
                 10. Salir
                 Escribe una opción:
@@ -272,40 +272,41 @@ public class App {
                         System.out.println("El equipo ahora se llama: " + nuevoNombre);                       
                     }
                     case 3 -> {
-
-                        System.out.println("Selecciona el jugador al que vas agregarle el equipo:");
-                        for (int i = 0; i < jugadores.size(); i++) {
-                            System.out.println((i + 1) + ". " + jugadores.get(i).getNombre());
-                        
-                        int jugadorSeleccionado = sc.nextInt() - 1;
-                        sc.nextLine();
-                        Jugador jugadorObjeto = jugadores.get(jugadorSeleccionado);
-                        Equipo equipoObjeto = equipos.get(equipoSeleccionado);
-                        jugadorObjeto.setEquipo(equipoObjeto);
-                        System.out.println("El nuevo equipo de "+jugadorObjeto.getNombre()+" es: "+jugadorObjeto.getEquipo());
-                        } // ERROR Exception in thread "main" java.lang.IndexOutOfBoundsException: Index 2 out of bounds for length 2
-                    } 
-                    case 4 ->  {
-                          // Validar la selección del equipo
-                        if (equipoSeleccionado > 0 && equipoSeleccionado <= equipos.size()) {
-                            Equipo equipoObjeto = equipos.get(equipoSeleccionado - 1);
-                            System.out.println("Jugadores del equipo " + equipoObjeto.getNombre() + ":");
-
-                            // Mostrar jugadores del equipo seleccionado
-                            boolean hayJugadores = false;
-                            for (Jugador jugador : jugadores) {
-                                if (jugador.getEquipo() != null && jugador.getEquipo().equals(equipoObjeto)) {
-                                    System.out.println("- " + jugador.getNombre());
-                                    hayJugadores = true;
-                                }
+                        try {
+                            System.out.println("Selecciona el jugador al que vas agregarle el equipo:");
+                            for (int i = 0; i < jugadores.size(); i++) {
+                                System.out.println((i + 1) + ". " + jugadores.get(i).getNombre());
                             }
 
-                            if (!hayJugadores) {
-                                System.out.println("No hay jugadores en este equipo.");
-                            }
-                        } else {
-                            System.out.println("Selección inválida.");
+                            int jugadorSeleccionado = sc.nextInt() - 1;
+                            sc.nextLine();
+                            Jugador jugadorObjeto = jugadores.get(jugadorSeleccionado);
+                            Equipo equipoObjeto = equipos.get(equipoSeleccionado);
+                            jugadorObjeto.setEquipo(equipoObjeto);
+                            System.out.println("El nuevo equipo de " + jugadorObjeto.getNombre() + " es: "
+                                    + jugadorObjeto.getEquipo());
+
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println(e.getMessage());
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
                         }
+                        
+                    } 
+                    case 4 ->  {                   
+                        // Mostrar jugadores del equipo seleccionado
+                        boolean hayJugadores = false;
+                        Equipo equipoObjeto = equipos.get(equipoSeleccionado);
+                        for (Jugador jugador : jugadores) {
+                            if (jugador.getEquipo() != null && jugador.getEquipo().equals(equipoObjeto)) {
+                                System.out.println("- " + jugador.getNombre());
+                                hayJugadores = true;
+                            }
+                        }
+
+                        if (!hayJugadores) {
+                            System.out.println("No hay jugadores en este equipo.");
+                        }                      
 
                     }
                     case 5 -> System.out.println("Regresando al menú principal.");
@@ -317,6 +318,4 @@ public class App {
             System.out.println("Selección inválida. No se realizó la asignación.");
         }
     }
-
-
 }
