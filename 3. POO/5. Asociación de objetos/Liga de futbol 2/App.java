@@ -33,6 +33,11 @@ public class App {
 
     public static void main(String[] args) {
         int opcion;
+        // Equipo equipo1 = new Equipo("Barcelona"); // Instancia de clase personalizada
+        // Equipo equipo2 = new Equipo("Real Madrid");
+
+        // Jugador jugador1 = new Jugador("Juan", equipo1); // Asociación con equipo1
+        // Jugador jugador2 = new Jugador("Carlos", equipo2); // Asociación con equipo2
         do {
             System.out.println("""
                 \nBienvenido al sistema de gestión de jugadores y equipos.
